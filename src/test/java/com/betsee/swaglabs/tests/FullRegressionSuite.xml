@@ -1,0 +1,94 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Full Regression Suite" verbose="2" parallel="tests" thread-count="4">
+
+    <!-- Test Block 1: Running Specific Regression Groups -->
+    <test name="Valid Login Test">
+        <parameter name="browser" value="chrome" />
+        <parameter name="username" value="standard_user" />
+        <parameter name="password" value="secret_sauce" />
+        <groups>
+            <run>
+                <include name="positive" />
+            </run>
+        </groups>
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest" />
+        </classes>
+    </test>
+
+    <test name="Locked Out User Test">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="username" value="locked_out_user"/>
+        <parameter name="password" value="secret_sauce"/>
+
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest">
+                <methods>
+                    <include name="lockedOutUserTest"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+    <test name="Invalid Username Test">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="username" value="invalid_user"/>
+        <parameter name="password" value="secret_sauce"/>
+
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest">
+                <methods>
+                    <include name="invalidUsernameTest"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+    <test name="Invalid Password Test">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="username" value="standard_user"/>
+        <parameter name="password" value="secret_sauce1"/>
+
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest">
+                <methods>
+                    <include name="invalidPasswordTest"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+    <test name="Empty Username Test">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="password" value="secret_sauce"/>
+
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest">
+                <methods>
+                    <include name="emptyUsernameTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="Empty Password Test">
+
+        <parameter name="browser" value="chrome"/>
+        <parameter name="username" value="standard_user"/>
+
+        <classes>
+            <class name="com.betsee.swaglabs.tests.LoginTest">
+                <methods>
+                    <include name="emptyPasswordTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
